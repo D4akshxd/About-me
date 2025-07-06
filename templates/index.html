@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tally Prime TDL Expiry Remover</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-file-code"></i> TDL Expiry Remover</h1>
+            <p>Remove expiry dates from Tally Prime TDL files</p>
+        </header>
+
+        <main class="main-content">
+            <div class="upload-section">
+                <div class="upload-container" id="uploadContainer">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <h3>Upload Your TDL File</h3>
+                    <p>Select your TDL file to remove expiry date</p>
+                    <input type="file" id="fileInput" accept=".tdl,.txt" style="display: none;">
+                    <button class="btn primary" onclick="document.getElementById('fileInput').click()">
+                        <i class="fas fa-folder-open"></i> Browse Files
+                    </button>
+                    <small>Supported: .tdl, .txt | Max: 16MB</small>
+                </div>
+            </div>
+
+            <div class="process-section" id="processSection" style="display: none;">
+                <div class="file-details" id="fileDetails">
+                    <i class="fas fa-file-alt"></i>
+                    <div>
+                        <h4 id="fileName">filename.tdl</h4>
+                        <p id="fileSize">Size: 0 KB</p>
+                    </div>
+                    <button class="btn danger" onclick="removeFile()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <button class="btn success" id="processBtn" onclick="processFile()">
+                    <i class="fas fa-magic"></i> Remove TDL Expiry
+                </button>
+            </div>
+
+            <div class="result-section" id="resultSection" style="display: none;">
+                <div class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Success!</h3>
+                    <p>TDL expiry removed successfully!</p>
+                </div>
+                
+                <button class="btn primary" id="downloadBtn">
+                    <i class="fas fa-download"></i> Download Fresh TDL
+                </button>
+
+                <button class="btn secondary" onclick="resetForm()">
+                    <i class="fas fa-redo"></i> Process Another File
+                </button>
+            </div>
+
+            <div class="loading-section" id="loadingSection" style="display: none;">
+                <div class="loader"></div>
+                <h3>Processing...</h3>
+                <p>Removing expiry dates from your TDL file</p>
+            </div>
+        </main>
+
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Safe</h4>
+                <p>Original file unchanged</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-clock"></i>
+                <h4>Permanent</h4>
+                <p>No expiry restrictions</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-bolt"></i>
+                <h4>Fast</h4>
+                <p>Quick processing</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
